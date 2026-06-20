@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOLT — Find Local Restaurants & Order Direct | No Deliveroo Fees</title>
+    <meta name="description" content="Discover independent restaurants near you and order straight from them. No Deliveroo. No Uber Eats. No commission. Better deals, real local food.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-logo">VOLT</a>
+        <div class="nav-links" id="navLinks">
+            <a href="/restaurants">Find Restaurants</a>
+            <a href="/#for-restaurants">For Restaurants</a>
+            <a href="/about">About</a>
+            <a href="/join" class="nav-btn">Join VOLT</a>
+        </div>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-headline fade-in">
+            Order Local.<br>Order Direct.<br>No Middleman.
+        </h1>
+        <p class="hero-sub fade-in-delay">
+            Find the best independent restaurants near you — and order straight from them. No Deliveroo fees. No Uber Eats markup. Just great food, straight to your door.
+        </p>
+        <div class="hero-buttons fade-in-delay-2">
+            <a href="/restaurants" class="btn-primary">Find Restaurants Near Me</a>
+            <a href="/join" class="btn-secondary">Join VOLT as a Restaurant</a>
+        </div>
+        <p class="trust-line fade-in-delay-3">
+            100% free for customers. Restaurants keep every penny of their earnings.
+        </p>
+    </div>
+    <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<!-- STAT BAR -->
+<section class="stat-bar">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-block">
+                <span class="stat-number" data-target="30" data-suffix="%">0%</span>
+                <span class="stat-label">Commission Deliveroo charges restaurants</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-block">
+                <span class="stat-number" data-prefix="£" data-target="0">£0</span>
+                <span class="stat-label">What VOLT charges restaurants</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-block">
+                <span class="stat-number" data-target="100" data-suffix="%">0%</span>
+                <span class="stat-label">Of every order stays with the restaurant</span>
+            </div>
+        </div>
+        <p class="stat-tagline">
+            Deliveroo charges restaurants up to 30% per order. That cost gets passed to you. VOLT restaurants charge you the real price.
+        </p>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works section-pad">
+    <div class="container">
+        <h2 class="section-headline reveal">Three steps. That's it.</h2>
+        <div class="steps-grid">
+            <div class="step-card glass-card reveal">
+                <div class="step-number">01</div>
+                <h3>Enter your location</h3>
+                <p>Type your postcode or area. We'll show you every VOLT restaurant nearby.</p>
+            </div>
+            <div class="step-card glass-card reveal">
+                <div class="step-number">02</div>
+                <h3>Compare and choose</h3>
+                <p>See each restaurant's menu, deals, and today's special offers — side by side.</p>
+            </div>
+            <div class="step-card glass-card reveal">
+                <div class="step-number">03</div>
+                <h3>Order direct</h3>
+                <p>Click through to the restaurant's own page and place your order. Your money goes straight to them — not a platform.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY VOLT -->
+<section class="why-volt section-pad">
+    <div class="container">
+        <h2 class="section-headline reveal">Why order through VOLT?</h2>
+        <div class="why-grid">
+            <div class="why-block reveal">
+                <div class="why-icon">💰</div>
+                <h3>Better deals, always</h3>
+                <p>VOLT restaurants don't pay 30% commission to a platform. So they pass that saving to you — as discounts, bigger portions, or exclusive offers you won't find on Deliveroo.</p>
+            </div>
+            <div class="why-block reveal">
+                <div class="why-icon">🏘️</div>
+                <h3>Support local, actually</h3>
+                <p>Every VOLT restaurant is an independent local business. When you order direct, 100% of your money stays with them. Not with a billion-pound delivery company.</p>
+            </div>
+            <div class="why-block reveal">
+                <div class="why-icon">📍</div>
+                <h3>One place, every local restaurant</h3>
+                <p>Stop switching between apps to find what's nearby. VOLT shows you all local independent restaurants in one place, with their real-time deals.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESTAURANT LISTINGS -->
+<section class="listings section-pad" id="listings">
+    <div class="container">
+        <h2 class="section-headline reveal">Restaurants near you</h2>
+        <p class="section-sub reveal">Real independent restaurants. Real deals. Order direct today.</p>
+        <div class="restaurant-grid" id="restaurantGrid">
+            {% for r in restaurants %}
+            <div class="restaurant-card glass-card reveal">
+                <div class="card-top">
+                    <span class="cuisine-badge">{{ r.cuisine }}</span>
+                    <span class="rating">⭐ {{ r.rating }}</span>
+                </div>
+                <h3 class="restaurant-name">{{ r.name }}</h3>
+                <p class="restaurant-area">📍 {{ r.area }}</p>
+                <p class="restaurant-desc">{{ r.description }}</p>
+                <div class="deal-box">
+                    <span class="deal-label">Today's Deal</span>
+                    <span class="deal-text">{{ r.deal }}</span>
+                </div>
+                <div class="card-footer">
+                    <span class="delivery-time">🕐 {{ r.delivery_time }}</span>
+                    <a href="{{ r.order_link }}" target="_blank" class="order-btn">Order Direct →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="waitlist-block reveal">
+            <p>Don't see your area yet? We're adding new restaurants every week.</p>
+            <form class="waitlist-form" id="waitlistForm">
+                <input type="email" placeholder="Your email address" required>
+                <input type="text" placeholder="Your area or postcode" required>
+                <button type="submit">Notify me when VOLT comes to my area</button>
+            </form>
+            <p class="waitlist-confirm" id="waitlistConfirm" style="display:none;">
+                You're on the list. We'll message you when restaurants near your area join VOLT.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CHAT SECTION -->
+<section class="chat-section section-pad" id="chat">
+    <div class="container">
+        <h2 class="section-headline reveal">Not sure what you fancy?</h2>
+        <p class="section-sub reveal">Ask VOLT. Our assistant will find the right restaurant for your mood, your budget, and your location — and point you straight to their menu.</p>
+        <div class="chat-wrapper reveal">
+            <div class="chat-box" id="chatBox">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-row">
+                    <input type="text" id="chatInput" placeholder="Which restaurant near E2 has the best deal for 2 people tonight?">
+                    <button id="chatSend">Send</button>
+                </div>
+            </div>
+        </div>
+        <p class="chat-example reveal"><em>"Which restaurant near E2 has the best deal for 2 people tonight?" — just ask.</em></p>
+    </div>
+</section>
+
+<!-- FOR RESTAURANTS -->
+<section class="for-restaurants section-pad" id="for-restaurants">
+    <div class="container">
+        <h2 class="section-headline reveal">Own your customers. Keep your margins.</h2>
+        <p class="section-sub reveal">Deliveroo takes up to 30% of every order you work hard for. VOLT lists your restaurant for free and sends customers directly to your own ordering page. You pay nothing. You lose nothing.</p>
+        <div class="features-grid">
+            <div class="feature-card glass-card reveal">
+                <div class="feature-icon">💷</div>
+                <h3>Zero commission</h3>
+                <p>We don't touch your orders. Customers go directly to your page. Every penny from every order is yours.</p>
+            </div>
+            <div class="feature-card glass-card reveal">
+                <div class="feature-icon">🔍</div>
+                <h3>New customers find you</h3>
+                <p>VOLT is where people search for local restaurants. Being listed means new customers discover you — without you spending on ads.</p>
+            </div>
+            <div class="feature-card glass-card reveal">
+                <div class="feature-icon">🎯</div>
+                <h3>Compete on your own terms</h3>
+                <p>Show your deals, your offers, your story. VOLT lets customers compare restaurants — and you decide what makes yours worth choosing.</p>
+            </div>
+        </div>
+        <div class="restaurant-cta reveal">
+            <a href="/join" class="btn-primary">List My Restaurant on VOLT — It's Free</a>
+            <p class="cta-sub">Takes 5 minutes. No contract. No monthly fee.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW VOLT WORKS FOR RESTAURANTS -->
+<section class="how-restaurants section-pad">
+    <div class="container">
+        <h2 class="section-headline reveal">How VOLT works for restaurants</h2>
+        <div class="steps-grid">
+            <div class="step-card glass-card reveal">
+                <div class="step-number">01</div>
+                <h3>You join free</h3>
+                <p>Tell us your restaurant name, area, cuisine, and your direct ordering link. That's all we need.</p>
+            </div>
+            <div class="step-card glass-card reveal">
+                <div class="step-number">02</div>
+                <h3>Customers find you</h3>
+                <p>Anyone searching for local food in your area sees your listing — with your current deals front and centre.</p>
+            </div>
+            <div class="step-card glass-card reveal">
+                <div class="step-number">03</div>
+                <h3>They order on your page</h3>
+                <p>Customers click through to your ordering page. You handle the order. You keep all the money. VOLT never touches the transaction.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial section-pad">
+    <div class="container">
+        <h2 class="section-headline reveal">What VOLT restaurants say</h2>
+        <div class="testimonial-card glass-card reveal">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">We were paying Deliveroo £2,000 a month in fees. VOLT sends us customers for free and we keep everything. It was the simplest decision we made this year.</p>
+            <p class="quote-author">— [Restaurant Name], [Area], London</p>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta section-pad">
+    <div class="container">
+        <div class="cta-split">
+            <div class="cta-left reveal">
+                <h2>Hungry? Find your local tonight.</h2>
+                <p>Search independent restaurants near you and order direct.</p>
+                <a href="/restaurants" class="btn-primary">Find Food Near Me</a>
+            </div>
+            <div class="cta-divider"></div>
+            <div class="cta-right reveal">
+                <h2>Stop losing 30% to Deliveroo.</h2>
+                <p>Join VOLT. List free. Keep everything.</p>
+                <a href="/join" class="btn-primary">Join VOLT Today</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p class="footer-tagline">VOLT — The direct ordering network for independent London restaurants.</p>
+        <p class="footer-legal">VOLT is a discovery and referral platform. All orders are processed directly by the restaurant. VOLT does not handle payments or take commission on any order.</p>
+        <p class="footer-contact">Questions? Message us on WhatsApp: [number]</p>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
