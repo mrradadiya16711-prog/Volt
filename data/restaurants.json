@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Taj Mahal Kitchen",
+    "cuisine": "Indian",
+    "area": "Bethnal Green",
+    "postcode": "E2",
+    "deal": "Free naan with every main tonight",
+    "rating": 4.8,
+    "delivery_time": "30-40 min",
+    "order_link": "https://example.com",
+    "description": "Authentic Bangladeshi and Indian cuisine, family run since 2003"
+  },
+  {
+    "id": 2,
+    "name": "Smoky Seoul",
+    "cuisine": "Korean BBQ",
+    "area": "Hackney",
+    "postcode": "E8",
+    "deal": "20% off orders over £25 tonight only",
+    "rating": 4.9,
+    "delivery_time": "35-45 min",
+    "order_link": "https://example.com",
+    "description": "Korean street food and BBQ, independent since 2018"
+  },
+  {
+    "id": 3,
+    "name": "Napoli Nights",
+    "cuisine": "Italian",
+    "area": "Shoreditch",
+    "postcode": "E1",
+    "deal": "Free tiramisu with any pizza order",
+    "rating": 4.7,
+    "delivery_time": "25-35 min",
+    "order_link": "https://example.com",
+    "description": "Wood-fired Neapolitan pizza, family recipe since 1998"
+  },
+  {
+    "id": 4,
+    "name": "The Pepper Box",
+    "cuisine": "Burgers",
+    "area": "Bow",
+    "postcode": "E3",
+    "deal": "Free fries with every burger today",
+    "rating": 4.6,
+    "delivery_time": "20-30 min",
+    "order_link": "https://example.com",
+    "description": "Smash burgers made fresh to order, local favourite since 2020"
+  },
+  {
+    "id": 5,
+    "name": "Bangkok Bowl",
+    "cuisine": "Thai",
+    "area": "Mile End",
+    "postcode": "E1W",
+    "deal": "Free spring rolls with orders over £20",
+    "rating": 4.8,
+    "delivery_time": "30-40 min",
+    "order_link": "https://example.com",
+    "description": "Authentic Thai street food, homemade recipes from Bangkok"
+  },
+  {
+    "id": 6,
+    "name": "Spice Route",
+    "cuisine": "Pakistani",
+    "area": "Whitechapel",
+    "postcode": "E1",
+    "deal": "Buy 2 mains get 1 free tonight",
+    "rating": 4.9,
+    "delivery_time": "35-45 min",
+    "order_link": "https://example.com",
+    "description": "Traditional Pakistani karahi and grill, family run since 2005"
+  }
+]
